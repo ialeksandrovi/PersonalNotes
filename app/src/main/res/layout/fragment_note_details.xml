@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/tvTitleDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="TITLE"
+        android:textIsSelectable="true"
+        android:textSize="@dimen/title_text_size"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/margin_top"
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/tvSetImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="@string/pin_pic"
+        android:drawableEnd="@drawable/ic_baseline_image" />
+
+
+</LinearLayout>
