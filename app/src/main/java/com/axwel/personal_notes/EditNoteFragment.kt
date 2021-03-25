@@ -1,4 +1,6 @@
 package com.axwel.personal_notes
 
-class EditNoteFragment {
+import androidx.fragment.app.Fragment
+
+class EditNoteFragment: Fragment() {
 }
