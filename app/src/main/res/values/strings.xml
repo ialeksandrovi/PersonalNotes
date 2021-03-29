@@ -2,4 +2,6 @@
     <string name="app_name">Personal Notes</string>
     <string name="pin_pic">Pin a picture</string>
     <string name="add_new">Add new Note</string>
+    <string name="save">Save</string>
+    <string name="remove">Remove</string>
 </resources>
