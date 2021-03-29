@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 class EditNoteFragment: Fragment() {
 
     companion object {
-        val TAG = EditNoteFragment::class.java.simpleName
+        val TAG = EditNoteFragment::class.java.canonicalName ?: "EditNoteFragment"
         fun newInstance(): EditNoteFragment {
             return EditNoteFragment()
         }
