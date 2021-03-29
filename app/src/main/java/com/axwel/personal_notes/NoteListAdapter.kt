@@ -7,5 +7,6 @@ class NoteListAdapter {
 }
 
 interface OperationListener{
+    fun itemPicked(item: ItemList)
 }
 
