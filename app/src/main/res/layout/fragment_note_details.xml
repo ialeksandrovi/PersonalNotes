@@ -54,11 +54,14 @@
     <EditText
         android:id="@+id/etMessage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:focusedByDefault="true"
+        android:gravity="top"
+        android:background="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/llDates"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toTopOf="@+id/clButtons"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clButtons"
