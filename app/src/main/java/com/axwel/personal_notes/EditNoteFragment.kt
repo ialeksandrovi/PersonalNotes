@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.core.text.set
 import androidx.fragment.app.Fragment
 import com.axwel.personal_notes.databinding.FragmentNoteDetailsBinding
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,8 +29,8 @@ class EditNoteFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.tvTitle.setText("Какой-то заголовок")
-        binding.tvTitle.setOnKeyListener { v, keyCode, event ->
+        binding.tvTitle.setText(arguments?.getString("ARG_NOTE_TITLE"))
+        binding.tvTitle.setOnKeyListener { _, keyCode, event ->
 
             if (event.action == KeyEvent.ACTION_DOWN &&
                     keyCode == KeyEvent.KEYCODE_ENTER
@@ -42,17 +43,27 @@ class EditNoteFragment: Fragment() {
             }
             return@setOnKeyListener false
         }
-        val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
-        val currentDate = sdf.format(Date())
-        binding.tvDateCreated.text = "Created: \n$currentDate"
-        binding.tvDateLastUpdated.text = "Last updated: \n-"
+        binding.etMessage.setText(requireArguments().getString("ARG_NOTE_MESSAGE"))
+        binding.tvDateCreated.text = arguments?.getString("ARG_NOTE_CREATED")
+        binding.tvDateLastUpdated.text = arguments?.getString("ARG_NOTE_UPDATED", "not updated")
 
     }
 
     companion object {
         val TAG = EditNoteFragment::class.java.canonicalName ?: "EditNoteFragment"
-        fun newInstance(): EditNoteFragment {
-            return EditNoteFragment()
+        fun newInstance(note: DefaultNote): EditNoteFragment {
+            val args = Bundle()
+            args.apply {
+                putString("ARG_NOTE_GUID", note.guid)
+                putString("ARG_NOTE_TITLE", note.title)
+                putString("ARG_NOTE_MESSAGE", note.message)
+                putString("ARG_NOTE_CREATED", note.dateCreation)
+                putString("ARG_NOTE_UPDATED", note.dateLastUpdate)
+
+            }
+            return EditNoteFragment().apply {
+                arguments = args
+            }
         }
     }
 }

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.axwel.personal_notes.databinding.FragmentNoteListBinding
+import java.text.SimpleDateFormat
 import java.util.*
 
 class NoteListFragment: Fragment() {
@@ -24,31 +25,33 @@ class NoteListFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        requireContext().let {
+        requireContext().let { context ->
             notesAdapter = NoteListAdapter(object : OperationListener {
-                override fun itemPicked(itemGuid: String) {
-                    val navigator = it as NoteDetailsNavigator
-                    navigator.navigateToDetails(itemGuid)
+                override fun itemPicked(note: DefaultNote) {
+                    val navigator = context as NoteDetailsNavigator
+                    navigator.navigateToDetails(note)
                 }
-            }, it)
-        }
-        var list: MutableList<ItemList> = mutableListOf()
-        list.apply {
-            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-        }
+            }, context)
+            binding.btnAddNew.setOnClickListener { val navigator = context as NoteDetailsNavigator
+                navigator.navigateToDetails(DefaultNote("", "", "not created", "not updated", UUID.randomUUID().toString())) }
 
+        }
+        val list: MutableList<DefaultNoteItemModel> = mutableListOf()
+        list.apply {
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()), "-", UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()), "-", UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()), "-", UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()), "-", UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()), SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()), UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()), "-", UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()), SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()), UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()), SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()), UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()), SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()), UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()), "-", UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()), SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()), UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()), SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()), UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessage", SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()),SimpleDateFormat("dd/M/yyyy hh:mm:ss").format(Date()), UUID.randomUUID().toString())))
+        }
 
         recyclerView = binding.rvList
         recyclerView?.apply {
