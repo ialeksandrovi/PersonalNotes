@@ -24,7 +24,7 @@ class NoteListFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        context?.let {
+        requireContext().let {
             notesAdapter = NoteListAdapter(object : OperationListener {
                 override fun itemPicked(itemGuid: String) {
                     val navigator = it as NoteDetailsNavigator
@@ -33,19 +33,21 @@ class NoteListFragment: Fragment() {
             }, it)
         }
         var list: MutableList<ItemList> = mutableListOf()
-        list.add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-        list.add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-        list.add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-        list.add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-        list.add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-        list.add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-        list.add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-        list.add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-        list.add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-        list.add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-        list.add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-        list.add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
-        list.add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
+        list.apply {
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
+            add(DefaultNoteItemModel(DefaultNote("Title1", "MessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessageMessage", Date(), Date(), UUID.randomUUID().toString())))
+        }
 
 
         recyclerView = binding.rvList
