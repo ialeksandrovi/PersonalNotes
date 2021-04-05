@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.axwel.personal_notes.databinding.ItemNoteBinding
 
 class NoteListAdapter(
-        val listener: OperationListener,
-        val context: Context
+    private val listener: OperationListener,
+    private val context: Context
 ): RecyclerView.Adapter<NoteItemViewHolder>() {
-    private lateinit var items: List<ItemList>
+    private lateinit var items: List<DefaultNoteItemModel>
 
-    fun setItems(noteItems: List<ItemList>) {
+    fun setItems(noteItems: List<DefaultNoteItemModel>) {
         items = noteItems
     }
 
@@ -27,25 +27,17 @@ class NoteListAdapter(
     override fun onBindViewHolder(holder: NoteItemViewHolder, position: Int) {
         val item = items[position]
         holder.apply {
-            if (item is DefaultNoteItemModel) {
-                defaultItemLayout.visibility = View.VISIBLE
-                addNewLayout.visibility = View.GONE
-                setClickListener(defaultItemLayout, item.guid)
-                title.text = item.note.title
-                noteShort.text = item.note.message
-            } else {
-                defaultItemLayout.visibility = View.GONE
-                addNewLayout.visibility = View.VISIBLE
-                setClickListener(addNewLayout, item.guid)
-            }
+            setClickListener(defaultItemLayout, item.note)
+            title.text = item.note.title
+            noteShort.text = item.note.message
         }
 
 
     }
 
-    private fun setClickListener(view: View, guid: String) {
+    private fun setClickListener(view: View, note: DefaultNote) {
         view.setOnClickListener {
-            listener.itemPicked(guid)
+            listener.itemPicked(note)
         }
     }
 

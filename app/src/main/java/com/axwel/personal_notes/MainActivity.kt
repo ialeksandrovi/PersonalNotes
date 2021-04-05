@@ -41,17 +41,17 @@ class MainActivity : AppCompatActivity(), NoteDetailsNavigator {
         setContentView(binding.root)
     }
 
-    override fun navigateToDetails(guid: String) {
+    override fun navigateToDetails(note: DefaultNote) {
         if (OrientationService(applicationContext).isLandscape()) {
             binding.flNote?.visibility = View.VISIBLE
             supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.flNote, EditNoteFragment.newInstance(), EditNoteFragment.TAG)
+                    .replace(R.id.flNote, EditNoteFragment.newInstance(note), EditNoteFragment.TAG)
                     .commit()
         } else {
             supportFragmentManager
                     .beginTransaction()
-                    .replace(R.id.flNotesList, EditNoteFragment.newInstance(), EditNoteFragment.TAG)
+                    .replace(R.id.flNotesList, EditNoteFragment.newInstance(note), EditNoteFragment.TAG)
                     .addToBackStack(EditNoteFragment.TAG)
                     .commit()
         }
