@@ -44,25 +44,26 @@ class EditNoteFragment: Fragment() {
             return@setOnKeyListener false
         }
         binding.etMessage.setText(requireArguments().getString("ARG_NOTE_MESSAGE"))
-        binding.tvDateCreated.text = arguments?.getString("ARG_NOTE_CREATED")
-        binding.tvDateLastUpdated.text = arguments?.getString("ARG_NOTE_UPDATED", "not updated")
+        binding.tvDateCreated.text = arguments?.getLong("ARG_NOTE_CREATED")?.let {
+            Date(it).toString()
+        }
+        binding.tvDateLastUpdated.text = arguments?.getLong("ARG_NOTE_UPDATED")?.let {
+            Date(it).toString()
+        }
 
     }
 
     companion object {
         val TAG = EditNoteFragment::class.java.canonicalName ?: "EditNoteFragment"
         fun newInstance(note: DefaultNote): EditNoteFragment {
-            val args = Bundle()
-            args.apply {
-                putString("ARG_NOTE_GUID", note.guid)
-                putString("ARG_NOTE_TITLE", note.title)
-                putString("ARG_NOTE_MESSAGE", note.message)
-                putString("ARG_NOTE_CREATED", note.dateCreation)
-                putString("ARG_NOTE_UPDATED", note.dateLastUpdate)
-
-            }
             return EditNoteFragment().apply {
-                arguments = args
+                arguments = Bundle().apply {
+                    putString("ARG_NOTE_GUID", note.guid)
+                    putString("ARG_NOTE_TITLE", note.title)
+                    putString("ARG_NOTE_MESSAGE", note.message)
+                    putLong("ARG_NOTE_CREATED", note.dateCreation.time)
+                    putLong("ARG_NOTE_UPDATED", note.dateLastUpdate.time)
+                }
             }
         }
     }
